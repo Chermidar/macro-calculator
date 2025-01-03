@@ -56,8 +56,7 @@
 
     <script>
         async function submitForm() {
-            const endpoint = 'https://api.brevo.com/v3/contacts';
-            const apiKey = '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'; // Cambia esto a tu API Key real
+            const endpoint = 'https://macro-calculator-nu.vercel.app/api/subscribe';
             const form = document.getElementById('macro-form');
             const formData = new FormData(form);
             const data = {};
@@ -71,31 +70,18 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'api-key': apiKey
                     },
-                    body: JSON.stringify({
-                        email: data.email,
-                        attributes: {
-                            NAME: data.name,
-                            AGE: data.age,
-                            GENDER: data.gender,
-                            HEIGHT: data.height,
-                            WEIGHT: data.weight,
-                            GOAL: data.goal
-                        },
-                        listIds: [2], // Cambia el ID por el de tu lista en Brevo
-                        updateEnabled: true
-                    })
+                    body: JSON.stringify(data),
                 });
 
                 if (response.ok) {
                     alert('Your data has been submitted successfully!');
                 } else {
-                    alert('There was an error. Please try again.');
+                    throw new Error('Failed to submit form');
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('Failed to submit. Please try again later.');
+                alert('There was an error. Please try again.');
+                console.error(error);
             }
         }
     </script>

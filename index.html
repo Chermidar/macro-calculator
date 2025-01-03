@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,37 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Macro Calculator</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-        }
-        form {
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
+        body { font-family: Arial, sans-serif; margin: 20px; padding: 0; }
+        form { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+        button { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
     </style>
 </head>
 <body>
@@ -49,15 +24,15 @@
 
         <label for="gender">Gender:</label>
         <select id="gender" name="gender" required>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="prefer_not_to_say">Prefer not to say</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Prefer not to say">Prefer not to say</option>
         </select>
 
         <label for="unit">Unit System:</label>
         <select id="unit" name="unit" required>
             <option value="metric">Metric (kg, cm)</option>
-            <option value="imperial">Imperial (lb, inch)</option>
+            <option value="imperial">Imperial (lbs, inch)</option>
         </select>
 
         <label for="height">Height:</label>
@@ -68,9 +43,9 @@
 
         <label for="goal">Goal:</label>
         <select id="goal" name="goal" required>
-            <option value="lose_weight">Lose weight</option>
-            <option value="maintain_weight">Maintain weight</option>
-            <option value="gain_weight">Gain weight</option>
+            <option value="lose">Lose weight</option>
+            <option value="maintain">Maintain weight</option>
+            <option value="gain">Gain weight</option>
         </select>
 
         <label for="email">Email:</label>
@@ -81,7 +56,7 @@
 
     <script>
         async function submitForm() {
-            const endpoint = 'https://macro-calculator-nu.vercel.app/api/subscribe'; // Cambia esto por la URL de tu backend en Vercel
+            const endpoint = 'https://macro-calculator-nu.vercel.app/api/subscribe';
             const form = document.getElementById('macro-form');
             const formData = new FormData(form);
             const data = {};
@@ -94,19 +69,19 @@
                 const response = await fetch(endpoint, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(data),
                 });
 
                 if (response.ok) {
-                    alert('Your subscription was successful!');
+                    alert('Your data has been submitted successfully!');
                 } else {
-                    alert('There was an error. Please try again.');
+                    throw new Error('Failed to submit form');
                 }
             } catch (error) {
-                console.error('Error:', error);
                 alert('There was an error. Please try again.');
+                console.error(error);
             }
         }
     </script>

@@ -54,10 +54,9 @@
         <button type="button" onclick="submitForm()">Get Results</button>
     </form>
 
-    <script>
+   <script>
         async function submitForm() {
-            const endpoint = 'https://api.brevo.com/v3/contacts';
-            const apiKey = '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'; // Cambia esto a tu API Key real
+            const endpoint = '/api/submit';
             const form = document.getElementById('macro-form');
             const formData = new FormData(form);
             const data = {};
@@ -69,23 +68,8 @@
             try {
                 const response = await fetch(endpoint, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
-                    },
-                    body: JSON.stringify({
-                        email: data.email,
-                        attributes: {
-                            NAME: data.name,
-                            AGE: data.age,
-                            GENDER: data.gender,
-                            HEIGHT: data.height,
-                            WEIGHT: data.weight,
-                            GOAL: data.goal
-                        },
-                        listIds: [2], // Cambia el ID por el de tu lista en Brevo
-                        updateEnabled: true
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
                 });
 
                 if (response.ok) {

@@ -13,25 +13,27 @@ export default async function handler(req, res) {
     const fat = Math.round((gymKcal * 0.25) / 9);
 
     // Generar respuesta completa
-    const respuesta = `
-      <p>Hola ${data.name},</p>
-      <p>Según los datos que proporcionaste, aquí tienes tus resultados personalizados:</p>
-      <h3>Objetivo de peso:</h3>
-      <p>Basado en tu género, edad y estatura, tu rango saludable de peso se encuentra entre ${Math.round(data.weight * 0.95)} kg y ${Math.round(data.weight * 1.05)} kg.
-      Te recomendamos como peso objetivo <strong>${weightObjective} kg</strong>.</p>
-      <h3>Resultados:</h3>
-      <ul>
-        <li>Kcal diarias en estado sedentario: <strong>${sedentaryKcal} kcal</strong></li>
-        <li>Kcal diarias con 10,000 pasos diarios: <strong>${stepsKcal} kcal</strong></li>
-        <li>Kcal diarias con 10,000 pasos + gimnasio 4 veces a la semana: <strong>${gymKcal} kcal</strong></li>
-      </ul>
-      <h3>Macronutrientes (basados en ${weightObjective} kg de peso objetivo):</h3>
-      <ul>
-        <li>Proteínas: <strong>${protein} g</strong></li>
-        <li>Carbohidratos: <strong>${carbs} g</strong></li>
-        <li>Grasas: <strong>${fat} g</strong></li>
-      </ul>
-      <p><em>Nota:</em> Este cálculo es una estimación aproximada. Para obtener datos más precisos y adaptados a tus necesidades individuales, te recomiendo consultar con un especialista en nutrición.</p>
+    const respuesta = `      
+    Hola ${data.name},
+
+      Según los datos que proporcionaste, aquí tienes tus resultados personalizados:
+
+      Objetivo de peso:
+      Basado en tu género, edad y estatura, tu rango saludable de peso se encuentra entre ${Math.round(data.weight * 0.95)} kg y ${Math.round(data.weight * 1.05)} kg.
+      Te recomendamos como peso objetivo ${weightObjective} kg.
+
+      Resultados:
+      Kcal diarias en estado sedentario: ${sedentaryKcal} kcal
+      Kcal diarias con 10,000 pasos diarios: ${stepsKcal} kcal
+      Kcal diarias con 10,000 pasos diarios + gimnasio 4 veces a la semana: ${gymKcal} kcal
+
+      Macronutrientes (basados en ${weightObjective} kg de peso objetivo):
+      - Proteínas: ${protein} g
+      - Carbohidratos: ${carbs} g
+      - Grasas: ${fat} g
+
+      Nota:
+      Este cálculo es una estimación aproximada. Para obtener datos más precisos y adaptados a tus necesidades individuales, te recomiendo consultar con un especialista en nutrición.
     `;
 
     const endpoint = 'https://api.brevo.com/v3/contacts';
